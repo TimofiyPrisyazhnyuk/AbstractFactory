@@ -1,16 +1,22 @@
 <?php
 
-namespace AbstractFactory\Tests;
+namespace Tests;
 
-use AbstractFactory\ProductFactory;
+use ProductFactory;
 
-require __DIR__ . "/../Product.php";
-require __DIR__ . "/../ProductFactory.php";
-require __DIR__ . "/../DigitalProduct.php";
-require __DIR__ . "/../ShippableProduct.php";
+spl_autoload_register(function ($class) {
+    include __DIR__ . '/../' . $class . '.php';
+});
 
+/**
+ * Class AbstractFactoryTest
+ * @package AbstractFactory\Tests
+ */
 class AbstractFactoryTest
 {
+    /**
+     * Test factory.
+     */
     public function testAll()
     {
         $factory = new ProductFactory();
@@ -21,4 +27,5 @@ class AbstractFactoryTest
     }
 }
 
+// Run test.
 print_r((new AbstractFactoryTest)->testAll());
